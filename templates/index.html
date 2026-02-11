@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Engineer | Portfolio</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & THEME --- */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f4f4f5;
+            --text-primary: #18181b;
+            --text-secondary: #71717a;
+            --accent: #000000;
+            --accent-hover: #333333;
+            --border: #e4e4e7;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --modal-overlay: rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #09090b;
+            --bg-secondary: #18181b;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --accent: #ffffff;
+            --accent-hover: #d4d4d8;
+            --border: #27272a;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            --modal-overlay: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- RESET & BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        button { cursor: pointer; border: none; font-family: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        input, textarea, select { font-family: inherit; }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+        .grid { display: grid; gap: 20px; }
+        .flex { display: flex; gap: 10px; align-items: center; }
+        .flex-col { flex-direction: column; }
+        .justify-between { justify-content: space-between; }
+        .text-center { text-align: center; }
+        .hidden { display: none !important; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(var(--bg-primary), 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { font-size: 1.25rem; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--text-secondary); }
+
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+
+        .controls { display: flex; gap: 12px; align-items: center; }
+
+        .btn-icon {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+        }
+        .btn-icon:hover { background: var(--bg-secondary); }
+
+        /* --- HERO --- */
+        .hero { padding: 120px 0 80px; text-align: left; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 24px; }
+        .hero p { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 32px; }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+        /* --- SEARCH --- */
+        .search-container { max-width: 600px; margin: 0 auto 40px; position: relative; }
+        .search-input {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
+
+        /* --- GALLERY --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .gallery-item {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .gallery-item:hover { transform: translateY(-5px); border-color: var(--border); box-shadow: var(--card-shadow); }
+        .gallery-img { width: 100%; height: 200px; object-fit: cover; background: #ddd; }
+        .gallery-info { padding: 16px; }
+        .gallery-title { font-weight: 600; margin-bottom: 8px; }
+        .gallery-desc { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* --- PDFs --- */
+        .pdf-list { display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto; }
+        .pdf-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .pdf-info { display: flex; align-items: center; gap: 16px; }
+        .pdf-icon { width: 40px; height: 40px; color: var(--text-secondary); }
+        .btn-download {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-primary);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-download:hover { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
+
+        /* --- CONTACT --- */
+        .contact-wrapper {
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-revealer {
+            cursor: pointer;
+            padding: 20px;
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .contact-revealer:hover { border-color: var(--accent); background: rgba(0,0,0,0.02); }
+        .contact-details {
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+        .contact-details.visible { opacity: 1; transform: translateY(0); }
+        .contact-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- MODALS --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--modal-overlay);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+        .modal {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-overlay.open .modal { transform: scale(1); }
+        .modal-lg { max-width: 900px; }
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+        }
+
+        /* --- ADMIN PANEL --- */
+        .admin-dashboard { display: grid; grid-template-columns: 200px 1fr; gap: 20px; }
+        .admin-sidebar { border-right: 1px solid var(--border); padding-right: 20px; }
+        .admin-nav-btn {
+            display: block; width: 100%; text-align: left;
+            padding: 10px; margin-bottom: 5px;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        .admin-nav-btn:hover, .admin-nav-btn.active { background: var(--bg-secondary); color: var(--text-primary); }
+        
+        .form-group { margin-bottom: 16px; }
+        .form-label { display: block; margin-bottom: 6px; font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); }
+        .form-control {
+            width: 100%; padding: 10px;
+            background: var(--bg-secondary); border: 1px solid var(--border);
+            color: var(--text-primary); border-radius: 4px;
+        }
+        .form-control:focus { outline: none; border-color: var(--accent); }
+
+        /* --- TOAST --- */
+        .toast-container {
+            position: fixed; bottom: 20px; right: 20px; z-index: 2000;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .toast {
+            background: var(--bg-secondary); color: var(--text-primary);
+            padding: 12px 20px; border-radius: 6px;
+            border-left: 4px solid var(--accent);
+            box-shadow: var(--card-shadow);
+            animation: slideIn 0.3s ease;
+            display: flex; align-items: center; gap: 10px;
+        }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .admin-dashboard { grid-template-columns: 1fr; }
+            .admin-sidebar { border-right: none; border-bottom: 1px solid var(--border); margin-bottom: 20px; padding-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                <span>Donau Logik</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#about" data-i18n="nav_about">About</a>
+                <a href="#services" data-i18n="nav_services">Services</a>
+                <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+                <a href="#pdf" data-i18n="nav_pdf">Portfolio</a>
+                <a href="#contact" data-i18n="nav_contact">Contact</a>
+            </div>
+
+            <div class="controls">
+                <button class="btn-icon" id="lang-toggle" title="Switch Language">DE</button>
+                <button class="btn-icon" id="theme-toggle" title="Toggle Theme">
+                    <svg id="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg id="sun-icon" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <button class="btn-icon" id="admin-btn" title="Admin Login">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO -->
+        <section class="section hero" id="home">
+            <div class="container">
+                <span class="mono" style="color: var(--text-secondary); display: block; margin-bottom: 16px;">// Industry Solutions</span>
+                <h1 data-i18n="hero_title">Engineering Automation Efficiency</h1>
+                <p data-i18n="hero_subtitle">Specialized in industrial Automation and process optimization.</p>
+                <a href="#contact" class="btn-primary" data-i18n="hero_cta">Start a Project</a>
+            </div>
+        </section>
+
+        <!-- ABOUT & SERVICES -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <div>
+                        <h2 style="margin-bottom: 20px;" data-i18n="about_title">About Me</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 16px;" data-i18n="about_text_1">
+                            I am a freelance developer focused on removing repetitive tasks from your workflow. 
+                            With a background in mechanical engineering and computer science, I bridge the gap between hardware and software.
+                        </p>
+                        <p style="color: var(--text-secondary);" data-i18n="about_text_2">
+                            My stack is minimal, robust, and scalable. I build solutions that work silently in the background, saving you time and money.
+                        </p>
+                    </div>
+                    <div>
+                        <h2 style="margin-bottom: 20px;" data-i18n="services_title">Services</h2>
+                        <ul style="color: var(--text-secondary); display: flex; flex-direction: column; gap: 12px;">
+                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_1">Web Scraping & Data Extraction</span></li>
+                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_2">API Integration & Backend Dev</span></li>
+                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_3">Automated Reporting (PDF/Excel)</span></li>
+                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_4">Custom Workflow Scripts</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEARCH & GALLERY -->
+        <section class="section" id="gallery">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 40px;">
+                    <h2 data-i18n="gallery_title">Project Gallery</h2>
+                    <p style="color: var(--text-secondary); margin-top: 10px;" data-i18n="gallery_subtitle">A visual overview of recent automation setups.</p>
+                </div>
+
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search projects or PDFs..." data-i18n-placeholder="search_placeholder">
+                </div>
+
+                <div id="gallery-container" class="gallery-grid">
+                    <!-- Gallery items injected via JS -->
+                </div>
+                <div id="no-results" class="text-center hidden" style="margin-top: 40px; color: var(--text-secondary);">No items found.</div>
+            </div>
+        </section>
+
+        <!-- PDF SECTION -->
+        <section class="section" id="pdf" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 40px;">
+                    <h2 data-i18n="pdf_title">Documentation & Portfolio</h2>
+                    <p style="color: var(--text-secondary); margin-top: 10px;" data-i18n="pdf_subtitle">Download detailed case studies and technical documentation.</p>
+                </div>
+
+                <div id="pdf-container" class="pdf-list">
+                    <!-- PDF items injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <h2 data-i18n="contact_title" style="margin-bottom: 20px;">Get In Touch</h2>
+                    
+                    <div id="contact-revealer" class="contact-revealer">
+                        <p data-i18n="contact_protect">Click to reveal contact details</p>
+                        <div style="margin-top: 10px; color: var(--text-secondary); font-size: 0.8rem;" class="mono">[ SYSTEM_LOCKED ]</div>
+                    </div>
+
+                    <div id="contact-details" class="contact-details">
+                        <a href="mailto:contact@autodev.com" class="contact-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            contact@autodev.com
+                        </a>
+                        <a href="tel:+123456789" class="contact-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            +49 123 456 789
+                        </a>
+                        <div style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary);">
+                            <span data-i18n="contact_avail">Available for freelance projects.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 40px 0; text-align: center; color: var(--text-secondary); font-size: 0.85rem; border-top: 1px solid var(--border);">
+        <div class="container">
+            <p>&copy; 2026 Donau Logik. <span data-i18n="footer_rights">All rights reserved.</span></p>
+        </div>
+    </footer>
+
+    <!-- === MODALS === -->
+
+    <!-- Image Modal -->
+    <div id="img-modal" class="modal-overlay">
+        <div class="modal modal-lg">
+            <button class="modal-close" onclick="closeModal('img-modal')">&times;</button>
+            <img id="modal-img-full" src="" alt="" style="width: 100%; border-radius: 8px; margin-bottom: 16px;">
+            <h3 id="modal-img-title"></h3>
+            <p id="modal-img-desc" style="color: var(--text-secondary); margin-top: 8px;"></p>
+        </div>
+    </div>
+
+    <!-- PDF Password Modal -->
+    <div id="pdf-modal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('pdf-modal')">&times;</button>
+            <h3 data-i18n="pdf_protected_title">Protected Document</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;" data-i18n="pdf_protected_desc">This document is password protected. Please enter the password.</p>
+            <div class="form-group">
+                <input type="password" id="pdf-password-input" class="form-control" placeholder="Password">
+            </div>
+            <button id="pdf-unlock-btn" class="btn-primary" style="width: 100%;" data-i18n="unlock_btn">Unlock & Download</button>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('login-modal')">&times;</button>
+            <h3 style="margin-bottom: 20px;">Admin Access</h3>
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" id="admin-user" class="form-control" placeholder="admin">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" id="admin-pass" class="form-control" placeholder="admin123">
+            </div>
+            <button id="login-btn" class="btn-primary" style="width: 100%;">Login</button>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px; text-align: center;">(Demo: admin / admin123)</p>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div id="dashboard-modal" class="modal-overlay">
+        <div class="modal modal-lg" style="max-width: 1000px;">
+            <button class="modal-close" onclick="closeModal('dashboard-modal')">&times;</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h3>Admin Dashboard</h3>
+                <button onclick="logout()" class="btn-download" style="color: #ef4444; border-color: #ef4444;">Logout</button>
+            </div>
+            
+            <div class="admin-dashboard">
+                <div class="admin-sidebar">
+                    <button class="admin-nav-btn active" onclick="switchAdminTab('gallery')">Manage Gallery</button>
+                    <button class="admin-nav-btn" onclick="switchAdminTab('pdf')">Manage PDFs</button>
+                </div>
+                <div class="admin-content">
+                    
+                    <!-- Gallery Tab -->
+                    <div id="adm-tab-gallery">
+                        <h4 style="margin-bottom: 16px;">Upload New Image</h4>
+                        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                            <!-- OPTIMIZED: Changed URL input to FILE input -->
+                            <input type="file" id="adm-gal-file" class="form-control" accept="image/*">
+                            
+                            <input type="text" id="adm-gal-title-en" class="form-control" placeholder="Title (EN)">
+                            <input type="text" id="adm-gal-title-de" class="form-control" placeholder="Title (DE)">
+                            <input type="text" id="adm-gal-desc-en" class="form-control" placeholder="Description (EN)">
+                            <input type="text" id="adm-gal-desc-de" class="form-control" placeholder="Description (DE)">
+                        </div>
+                        <button onclick="adminAddGallery()" class="btn-primary">Upload Image</button>
+                        
+                        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
+                        
+                        <h4 style="margin-bottom: 16px;">Existing Items</h4>
+                        <ul id="adm-gal-list" style="display: flex; flex-direction: column; gap: 10px;"></ul>
+                    </div>
+
+                    <!-- PDF Tab -->
+                    <div id="adm-tab-pdf" class="hidden">
+                        <h4 style="margin-bottom: 16px;">Upload New PDF</h4>
+                        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                            <!-- OPTIMIZED: Changed URL input to FILE input -->
+                            <input type="file" id="pdf-file" class="form-control" accept="application/pdf">
+                            
+                            <input type="text" id="pdf-title-en" class="form-control" placeholder="Title (EN)">
+                            <input type="text" id="pdf-title-de" class="form-control" placeholder="Title (DE)">
+                            <div class="flex">
+                                <input type="checkbox" id="pdf-prot"> <label for="pdf-prot">Password Protect?</label>
+                            </div>
+                            <input type="text" id="pdf-pass" class="form-control" placeholder="Password (if protected)">
+                        </div>
+                        <button onclick="adminAddPDF()" class="btn-primary">Upload PDF</button>
+
+                        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
+                        
+                        <h4 style="margin-bottom: 16px;">Existing PDFs</h4>
+                        <ul id="adm-pdf-list" style="display: flex; flex-direction: column; gap: 10px;"></ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script>
+        /* --- STATE MANAGEMENT --- */
+        let state = {
+            lang: 'en', // Default language
+            theme: localStorage.getItem('theme') || 'light',
+            isAdmin: false,
+            gallery: [],
+            pdfs: [],
+            tempPdfId: null
+        };
+
+        const translations = {
+            en: {
+                nav_about: "About", nav_services: "Services", nav_gallery: "Gallery", nav_pdf: "Portfolio", nav_contact: "Contact",
+                hero_title: "Engineering Automation Efficiency", hero_subtitle: "Specialized in industrial Automation and process optimization.",
+                hero_cta: "Start a Project", about_title: "About Me", about_text_1: "I am a freelance developer focused on removing repetitive tasks from your workflow. With a background in mechanical engineering and computer science, I bridge the gap between hardware and software.",
+                about_text_2: "My stack is minimal, robust, and scalable. I build solutions that work silently in the background, saving you time and money.",
+                services_title: "Services", srv_1: "Web Scraping & Data Extraction", srv_2: "API Integration & Backend Dev", srv_3: "Automated Reporting (PDF/Excel)", srv_4: "Custom Workflow Scripts",
+                gallery_title: "Project Gallery", gallery_subtitle: "A visual overview of recent automation setups.", search_placeholder: "Search projects or PDFs...",
+                pdf_title: "Documentation & Portfolio", pdf_subtitle: "Download detailed case studies and technical documentation.",
+                contact_title: "Get In Touch", contact_protect: "Click to reveal contact details", contact_avail: "Available for freelance projects.",
+                footer_rights: "All rights reserved.", pdf_protected_title: "Protected Document", pdf_protected_desc: "This document is password protected. Please enter the password.", unlock_btn: "Unlock & Download",
+                download: "Download", locked: "Locked", delete: "Delete"
+            },
+            de: {
+                nav_about: "Über mich", nav_services: "Leistungen", nav_gallery: "Galerie", nav_pdf: "Portfolio", nav_contact: "Kontakt",
+                hero_title: "Digitale Effizienz durch Technik", hero_subtitle: "Spezialisiert auf Python-Automatisierung, Backend-Architektur und Prozessoptimierung.",
+                hero_cta: "Projekt starten", about_title: "Über mich", about_text_1: "Ich bin ein freiberuflicher Entwickler, der sich auf die Beseitigung repetitiver Aufgaben aus Ihrem Workflow konzentriert. Mit einem Hintergrund in Maschinenbau und Informatik überbrücke ich die Lücke zwischen Hardware und Software.",
+                about_text_2: "Mein Stack ist minimal, robust und skalierbar. Ich baue Lösungen, die im Hintergrund lautlos arbeiten und Ihnen Zeit und Geld sparen.",
+                services_title: "Leistungen", srv_1: "Web Scraping & Datenextraktion", srv_2: "API-Integration & Backend-Entwicklung", srv_3: "Automatisierte Berichterstattung (PDF/Excel)", srv_4: "Benutzerdefinierte Workflow-Skripte",
+                gallery_title: "Projektgalerie", gallery_subtitle: "Eine visuelle Übersicht über aktuelle Automatisierungsprojekte.", search_placeholder: "Projekte oder PDFs suchen...",
+                pdf_title: "Dokumentation & Portfolio", pdf_subtitle: "Download Sie detaillierte Fallstudien und technische Dokumentationen.",
+                contact_title: "Kontaktieren", contact_protect: "Klicken Sie, um Kontaktdaten anzuzeigen (Bot-Schutz)", contact_avail: "Verfügbar für Freelance-Projekte.",
+                footer_rights: "Alle Rechte vorbehalten.", pdf_protected_title: "Geschütztes Dokument", pdf_protected_desc: "Dieses Dokument ist passwortgeschützt. Bitte geben Sie das Passwort ein.", unlock_btn: "Entsperren & Herunterladen",
+                download: "Herunterladen", locked: "Gesperrt", delete: "Löschen"
+            }
+        };
+
+        /* --- INITIALIZATION --- */
+        document.addEventListener('DOMContentLoaded', async () => {
+            applyTheme();
+            // Load data from API instead of LocalStorage
+            await fetchData(); 
+            renderContent();
+            renderGallery();
+            renderPDFs();
+            setupEventListeners();
+        });
+
+        /* --- API FUNCTIONS --- */
+        async function fetchData() {
+            try {
+                const res = await fetch('/api/data');
+                const data = await res.json();
+                state.gallery = data.gallery;
+                state.pdfs = data.pdfs;
+            } catch (e) {
+                console.error("Failed to load data", e);
+                showToast("Failed to load data from server", "error");
+            }
+        }
+
+        async function uploadImage() {
+            const fileInput = document.getElementById('adm-gal-file');
+            if (!fileInput.files[0]) return showToast("Please select a file", "error");
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('title_en', document.getElementById('adm-gal-title-en').value);
+            formData.append('title_de', document.getElementById('adm-gal-title-de').value);
+            formData.append('desc_en', document.getElementById('adm-gal-desc-en').value);
+            formData.append('desc_de', document.getElementById('adm-gal-desc-de').value);
+
+            try {
+                const res = await fetch('/api/upload/gallery', {
+                    method: 'POST',
+                    body: formData
+                });
+                if(res.ok) {
+                    showToast("Image Uploaded!");
+                    await fetchData(); // Reload data
+                    renderGallery();
+                    renderAdminLists();
+                    // Reset Form
+                    fileInput.value = '';
+                    document.getElementById('adm-gal-title-en').value = '';
+                    document.getElementById('adm-gal-desc-en').value = '';
+                } else {
+                    showToast("Upload Failed", "error");
+                }
+            } catch (e) {
+                showToast("Network Error", "error");
+            }
+        }
+
+        async function uploadPDF() {
+            const fileInput = document.getElementById('pdf-file');
+            if (!fileInput.files[0]) return showToast("Please select a PDF", "error");
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('title_en', document.getElementById('pdf-title-en').value);
+            formData.append('title_de', document.getElementById('pdf-title-de').value);
+            formData.append('is_protected', document.getElementById('pdf-prot').checked);
+            formData.append('password', document.getElementById('pdf-pass').value);
+
+            try {
+                const res = await fetch('/api/upload/pdf', {
+                    method: 'POST',
+                    body: formData
+                });
+                if(res.ok) {
+                    showToast("PDF Uploaded!");
+                    await fetchData();
+                    renderPDFs();
+                    renderAdminLists();
+                    // Reset Form
+                    fileInput.value = '';
+                    document.getElementById('pdf-title-en').value = '';
+                    document.getElementById('pdf-pass').value = '';
+                } else {
+                    showToast("Upload Failed", "error");
+                }
+            } catch (e) {
+                showToast("Network Error", "error");
+            }
+        }
+
+        async function deleteItem(type, id) {
+            if(!confirm("Are you sure?")) return;
+            try {
+                const res = await fetch(`/api/delete/${type}/${id}`, { method: 'DELETE' });
+                if(res.ok) {
+                    showToast("Item Deleted");
+                    await fetchData();
+                    renderGallery();
+                    renderPDFs();
+                    renderAdminLists();
+                }
+            } catch (e) {
+                showToast("Delete Failed", "error");
+            }
+        }
+
+        /* --- CORE FUNCTIONS --- */
+
+        function applyTheme() {
+            document.body.setAttribute('data-theme', state.theme);
+            const icon = state.theme === 'dark' ? '#sun-icon' : '#moon-icon';
+            document.querySelector('#theme-toggle svg').classList.add('hidden');
+            document.querySelector(icon).classList.remove('hidden');
+            localStorage.setItem('theme', state.theme);
+        }
+
+        function renderContent() {
+            const t = translations[state.lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (t[key]) el.placeholder = t[key];
+            });
+
+            // Update Lang Button
+            document.getElementById('lang-toggle').textContent = state.lang === 'en' ? 'DE' : 'EN';
+            
+            renderGallery();
+            renderPDFs();
+        }
+
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.style.borderLeftColor = type === 'error' ? '#ef4444' : '#000';
+            toast.innerHTML = `<span>${msg}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        /* --- RENDERERS --- */
+
+        function renderGallery(filter = '') {
+            const container = document.getElementById('gallery-container');
+            const noResults = document.getElementById('no-results');
+            container.innerHTML = '';
+            
+            const filtered = state.gallery.filter(item => {
+                const title = state.lang === 'en' ? item.title_en : item.title_de;
+                return title.toLowerCase().includes(filter.toLowerCase());
+            });
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            filtered.forEach(item => {
+                const title = state.lang === 'en' ? item.title_en : item.title_de;
+                const desc = state.lang === 'en' ? item.desc_en : item.desc_de;
+                
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.onclick = () => openImgModal(item);
+                div.innerHTML = `
+                    <img src="${item.image_url}" class="gallery-img" alt="${title}">
+                    <div class="gallery-info">
+                        <div class="gallery-title">${title}</div>
+                        <div class="gallery-desc">${desc}</div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderPDFs(filter = '') {
+            const container = document.getElementById('pdf-container');
+            container.innerHTML = '';
+            
+            const t = translations[state.lang];
+            const filtered = state.pdfs.filter(item => {
+                const title = state.lang === 'en' ? item.title_en : item.title_de;
+                return title.toLowerCase().includes(filter.toLowerCase());
+            });
+
+            filtered.forEach(pdf => {
+                const title = state.lang === 'en' ? pdf.title_en : pdf.title_de;
+                const protected = pdf.is_protected; // DB returns boolean
+                
+                const div = document.createElement('div');
+                div.className = 'pdf-item';
+                div.innerHTML = `
+                    <div class="pdf-info">
+                        <svg class="pdf-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        <span>${title}</span>
+                    </div>
+                    <button class="btn-download" onclick="initiateDownload(${pdf.id})">
+                        ${protected ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> ${t.locked}` : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> ${t.download}`}
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        /* --- INTERACTION LOGIC --- */
+
+        function setupEventListeners() {
+            // Theme Toggle
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                state.theme = state.theme === 'light' ? 'dark' : 'light';
+                applyTheme();
+            });
+
+            // Lang Toggle
+            document.getElementById('lang-toggle').addEventListener('click', () => {
+                state.lang = state.lang === 'en' ? 'de' : 'en';
+                localStorage.setItem('lang', state.lang);
+                renderContent();
+                renderAdminLists(); 
+            });
+
+            // Search
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                renderGallery(e.target.value);
+                renderPDFs(e.target.value);
+            });
+
+            // Contact Reveal
+            document.getElementById('contact-revealer').addEventListener('click', () => {
+                const revealer = document.getElementById('contact-revealer');
+                const details = document.getElementById('contact-details');
+                revealer.style.display = 'none';
+                details.classList.add('visible');
+            });
+
+            // Admin Button
+            document.getElementById('admin-btn').addEventListener('click', () => {
+                if (state.isAdmin) {
+                    openModal('dashboard-modal');
+                    renderAdminLists();
+                } else {
+                    openModal('login-modal');
+                }
+            });
+
+            // Login Logic
+            document.getElementById('login-btn').addEventListener('click', () => {
+                const u = document.getElementById('admin-user').value;
+                const p = document.getElementById('admin-pass').value;
+                if (u === 'admin' && p === 'admin123') {
+                    state.isAdmin = true;
+                    closeModal('login-modal');
+                    showToast('Welcome, Admin', 'success');
+                    openModal('dashboard-modal');
+                    renderAdminLists();
+                } else {
+                    showToast('Invalid Credentials', 'error');
+                }
+            });
+
+            // PDF Unlock
+            document.getElementById('pdf-unlock-btn').addEventListener('click', () => {
+                const input = document.getElementById('pdf-password-input');
+                const pdf = state.pdfs.find(p => p.id === state.tempPdfId);
+                if (pdf && input.value === pdf.password) {
+                    closeModal('pdf-modal');
+                    performDownload(pdf);
+                } else {
+                    showToast('Incorrect Password', 'error');
+                }
+            });
+        }
+
+        /* --- MODAL & DOWNLOAD LOGIC --- */
+
+        function openModal(id) { document.getElementById(id).classList.add('open'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+        function openImgModal(item) {
+            const title = state.lang === 'en' ? item.title_en : item.title_de;
+            const desc = state.lang === 'en' ? item.desc_en : item.desc_de;
+            document.getElementById('modal-img-full').src = item.image_url;
+            document.getElementById('modal-img-title').textContent = title;
+            document.getElementById('modal-img-desc').textContent = desc;
+            openModal('img-modal');
+        }
+
+        function initiateDownload(id) {
+            const pdf = state.pdfs.find(p => p.id === id);
+            if (!pdf) return;
+
+            if (pdf.is_protected) {
+                state.tempPdfId = id;
+                document.getElementById('pdf-password-input').value = '';
+                openModal('pdf-modal');
+            } else {
+                performDownload(pdf);
+            }
+        }
+
+        function performDownload(pdf) {
+            window.open(pdf.file_url, '_blank');
+        }
+
+        /* --- ADMIN FUNCTIONS --- */
+
+        function logout() {
+            state.isAdmin = false;
+            closeModal('dashboard-modal');
+            showToast('Logged out');
+        }
+
+        function switchAdminTab(tab) {
+            document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            ['gallery', 'pdf'].forEach(t => {
+                document.getElementById(`adm-tab-${t}`).classList.add('hidden');
+            });
+            document.getElementById(`adm-tab-${tab}`).classList.remove('hidden');
+        }
+
+        function renderAdminLists() {
+            // Gallery List
+            const galList = document.getElementById('adm-gal-list');
+            galList.innerHTML = '';
+            state.gallery.forEach(item => {
+                galList.innerHTML += `
+                    <li class="flex justify-between" style="padding: 10px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 4px;">
+                        <span>${item.title_en}</span>
+                        <button onclick="deleteItem('gallery', ${item.id})" class="btn-download" style="border:none; color: #ef4444; padding: 4px;">&times;</button>
+                    </li>`;
+            });
+
+            // PDF List
+            const pdfList = document.getElementById('adm-pdf-list');
+            pdfList.innerHTML = '';
+            state.pdfs.forEach(item => {
+                pdfList.innerHTML += `
+                    <li class="flex justify-between" style="padding: 10px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 4px;">
+                        <span>${item.title_en} ${item.is_protected ? '(Locked)' : ''}</span>
+                        <button onclick="deleteItem('pdf', ${item.id})" class="btn-download" style="border:none; color: #ef4444; padding: 4px;">&times;</button>
+                    </li>`;
+            });
+        }
+
+        // Renamed functions to match HTML onclick handlers
+        window.adminAddGallery = uploadImage;
+        window.adminAddPDF = uploadPDF;
+    </script>
+</body>
+</html>
