@@ -88,6 +88,15 @@
         .logo { font-size: 1.25rem; display: flex; align-items: center; gap: 10px; }
         .logo span { color: var(--text-secondary); }
 
+        .logo-mark {
+            color: #000000; /* default for light theme */
+        }
+
+        [data-theme="dark"] .logo-mark {
+            color: #fff; /* white in dark mode */
+        }
+
+
         .nav-links { display: flex; gap: 24px; }
         .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); }
         .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
@@ -310,10 +319,13 @@
     <!-- NAV -->
     <nav>
         <div class="container nav-inner">
+            
             <a href="#" class="logo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                <h2 class="logo-mark">DL</h2>
                 <span>Donau Logik</span>
             </a>
+
+
             
             <div class="nav-links">
                 <a href="#about" data-i18n="nav_about">About</a>
@@ -354,8 +366,14 @@
                     <div>
                         <h2 style="margin-bottom: 20px;" data-i18n="about_title">About Me</h2>
                         <p style="color: var(--text-secondary); margin-bottom: 16px;" data-i18n="about_text_1">
-                            I am a freelance developer focused on removing repetitive tasks from your workflow. 
-                            With a background in mechanical engineering and computer science, I bridge the gap between hardware and software.
+                            <!-- I am a freelance developer focused on removing repetitive tasks from your workflow. 
+                            With a background in mechanical engineering and computer science, I bridge the gap between hardware and software. -->
+                             Hello, I specialize in bridging the gap between mechanical processes and digital control. 
+                             With extensive experience in the automation industry, I deliver robust solutions for complex manufacturing environments.
+
+                            My focus is on reliability and efficiency. Whether it's a greenfield project or a brownfield retrofit, I ensure that 
+                            control systems are standardized, well-documented, and safe. I am proficient in the entire project lifecycle—from 
+                            electrical design and PLC programming to on-site commissioning and operator training. 
                         </p>
                         <p style="color: var(--text-secondary);" data-i18n="about_text_2">
                             My stack is minimal, robust, and scalable. I build solutions that work silently in the background, saving you time and money.
@@ -364,10 +382,11 @@
                     <div>
                         <h2 style="margin-bottom: 20px;" data-i18n="services_title">Services</h2>
                         <ul style="color: var(--text-secondary); display: flex; flex-direction: column; gap: 12px;">
-                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_1">Web Scraping & Data Extraction</span></li>
-                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_2">API Integration & Backend Dev</span></li>
-                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_3">Automated Reporting (PDF/Excel)</span></li>
-                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_4">Custom Workflow Scripts</span></li>
+                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_1">Siemens TIA Portal</span></li>
+                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_2">Rockwell Studio 5000</span></li>
+                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_3">MES</span></li>
+                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_4">Ignition SCADA</span></li>
+                            <li class="flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="srv_5">SQL & Industrial IT</span></li>
                         </ul>
                     </div>
                 </div>
@@ -481,7 +500,7 @@
                 <input type="password" id="admin-pass" class="form-control" placeholder="admin123">
             </div>
             <button id="login-btn" class="btn-primary" style="width: 100%;">Login</button>
-            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px; text-align: center;">(Demo: admin / admin123)</p>
+            <!-- <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px; text-align: center;">(Demo: admin / admin123)</p> -->
         </div>
     </div>
 
@@ -566,9 +585,9 @@
             en: {
                 nav_about: "About", nav_services: "Services", nav_gallery: "Gallery", nav_pdf: "Portfolio", nav_contact: "Contact",
                 hero_title: "Engineering Automation Efficiency", hero_subtitle: "Specialized in industrial Automation and process optimization.",
-                hero_cta: "Start a Project", about_title: "About Me", about_text_1: "I am a freelance developer focused on removing repetitive tasks from your workflow. With a background in mechanical engineering and computer science, I bridge the gap between hardware and software.",
+                hero_cta: "Start a Project", about_title: "About Me", about_text_1: " Hello, I specialize in bridging the gap between mechanical processes and digital control. With extensive experience in the automation industry, I deliver robust solutions for complex manufacturing environments. My focus is on reliability and efficiency. Whether it's a greenfield project or a brownfield retrofit, I ensure that control systems are standardized, well-documented, and safe. I am proficient in the entire project lifecycle—from electrical design and PLC programming to on-site commissioning and operator training.",
                 about_text_2: "My stack is minimal, robust, and scalable. I build solutions that work silently in the background, saving you time and money.",
-                services_title: "Services", srv_1: "Web Scraping & Data Extraction", srv_2: "API Integration & Backend Dev", srv_3: "Automated Reporting (PDF/Excel)", srv_4: "Custom Workflow Scripts",
+                services_title: "Services", srv_1: "Siemens TIA Portal", srv_2: "Rockwell Studio 5000", srv_3: "MES", srv_4: "Ignition SCADA", srv_5:"SQL & Industrial IT", 
                 gallery_title: "Project Gallery", gallery_subtitle: "A visual overview of recent automation setups.", search_placeholder: "Search projects or PDFs...",
                 pdf_title: "Documentation & Portfolio", pdf_subtitle: "Download detailed case studies and technical documentation.",
                 contact_title: "Get In Touch", contact_protect: "Click to reveal contact details", contact_avail: "Available for freelance projects.",
@@ -697,13 +716,24 @@
 
         /* --- CORE FUNCTIONS --- */
 
+   
         function applyTheme() {
             document.body.setAttribute('data-theme', state.theme);
-            const icon = state.theme === 'dark' ? '#sun-icon' : '#moon-icon';
-            document.querySelector('#theme-toggle svg').classList.add('hidden');
-            document.querySelector(icon).classList.remove('hidden');
+
+            const moon = document.getElementById('moon-icon');
+            const sun = document.getElementById('sun-icon');
+
+            if (state.theme === 'dark') {
+                moon.classList.add('hidden');
+                sun.classList.remove('hidden');
+            } else {
+                sun.classList.add('hidden');
+                moon.classList.remove('hidden');
+            }
+
             localStorage.setItem('theme', state.theme);
         }
+
 
         function renderContent() {
             const t = translations[state.lang];
